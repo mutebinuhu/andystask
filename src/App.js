@@ -1,23 +1,75 @@
-import logo from './logo.svg';
-import './App.css';
+
+import {useState} from 'react'
+import Questionone from "../src/Components/Qns/QuestionOne";
+import Questiontwo from "../src/Components/Qns/Questiontwo";
+import Nextbutton from "./Components/Buttons/Nextbutton";
+import Location from "../src/Components/Qns/Location";
+import Map from "./Components/Qns/Map";
+import Questionfour from './Components/Qns/Questionfour';
+import Questionfive from './Components/Qns/Questionfive';
+
+
+
 
 function App() {
+  const [showQnOne, setShowQnOne] = useState(true);
+  const [showQnTwo, setshowQnTwo] = useState(false);
+  const [showQnFour, setshowQnFour] = useState(false);
+  const [showQnFive, setshowQnFive] = useState(false);
+  const [showLocation, setShowLocation] = useState(false)
+  const [showNextButton, setshowNextButton] = useState(true);
+
+  
+
+
+  const [counter,  setCounter] = useState(1)
+  const handleClick = () =>{
+    setCounter(counter + 1);
+    switch(counter){
+      case 1:
+            setShowQnOne(false)
+            setshowQnTwo(true)
+      break;
+      case 2:
+        setshowQnTwo(false)
+        setshowQnFour(true);
+        setshowNextButton(false)
+        setTimeout(()=>{
+        setshowQnFive(true)
+        setshowNextButton(true)
+        setshowQnFour(false);
+
+        }, 2000)
+      break;
+      case 3:
+        setshowQnFive(false)
+        setShowLocation(true);
+      break;
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/*<Map />
+      <Location></Location>
+      */}
+    <div className="grid place-content-center h-screen relative">
+       {showQnOne && <Questionone></Questionone>}
+      
+      {showQnTwo && <Questiontwo></Questiontwo> }
+
+      {showQnFour && <Questionfour></Questionfour> }
+      {showQnFive && <Questionfive></Questionfive> }
+
+
+    {/*  <div className="absolute bottom-5 w-full">
+        <Nextbutton text='Next'></Nextbutton>
+      </div>
+    */}
+    {showLocation && <div><Map></Map><Location></Location></div>}
+  <div className="absolute bottom-5 w-full">
+        {showNextButton && <Nextbutton text='Next' handleClick={handleClick}></Nextbutton>}
+      </div>
+    </div>
     </div>
   );
 }
