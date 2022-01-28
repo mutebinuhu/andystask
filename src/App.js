@@ -7,6 +7,7 @@ import Location from "../src/Components/Qns/Location";
 import Map from "./Components/Qns/Map";
 import Questionfour from './Components/Qns/Questionfour';
 import Questionfive from './Components/Qns/Questionfive';
+import Noofpeople from './Components/Qns/Noofpeople';
 
 
 
@@ -16,7 +17,9 @@ function App() {
   const [showQnTwo, setshowQnTwo] = useState(false);
   const [showQnFour, setshowQnFour] = useState(false);
   const [showQnFive, setshowQnFive] = useState(false);
-  const [showLocation, setShowLocation] = useState(false)
+  const [showLocation, setShowLocation] = useState(false);
+  const [countPeople, setCountPeople] = useState(false);
+
   const [showNextButton, setshowNextButton] = useState(true);
 
   
@@ -43,9 +46,14 @@ function App() {
       break;
       case 3:
         setshowQnFive(false)
-        setShowLocation(true);
+      case 4:
+        setCountPeople(true);
+        setShowLocation(false);
+  
+
       break;
     }
+    console.log(counter)
   }
   return (
     <div>
@@ -59,6 +67,7 @@ function App() {
 
       {showQnFour && <Questionfour></Questionfour> }
       {showQnFive && <Questionfive></Questionfive> }
+      {countPeople && <Noofpeople/>}
 
 
     {/*  <div className="absolute bottom-5 w-full">
