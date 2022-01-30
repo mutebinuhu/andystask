@@ -2,7 +2,7 @@ import React from 'react';
 
 const Map = () => {
     return (
-        <div className='bg-red-200 h-72'>
+        <div className='bg-red-200 '>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus,
              ipsa dignissimos? Fugiat laboriosam, itaque nostrum ducimus nobis distinctio doloribus. Aspernatur
              autem sequi ut sed repellendus atque

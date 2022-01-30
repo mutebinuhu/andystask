@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Map from './Map'
+
 const Location = () => {
     return (
         <div className='px-5'>

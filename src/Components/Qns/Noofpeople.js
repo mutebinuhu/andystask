@@ -12,14 +12,27 @@ const Noofpeople = () => {
         setAdults(adults + 1)
      }
      const handleMinusAdults = () =>{
-        setAdults(adults - 1)
+        if(adults <= 0){
+        }else{
+            setAdults(adults - 1)
+        }
      }
+
      const handleAddChildren = () =>{
         setChildren(children + 1)
      }
+
      const handleMinusChildren = () =>{
-        setChildren(children - 1)
+        if(children <= 0){
+
+        }else{
+         setChildren(children - 1)
+        }
      }
+     //store adults
+    window.localStorage.setItem("Adults", adults)
+    window.localStorage.setItem("Children", children)
+
     return (
             <div className=''>
               <div className='flex justify-center font-medium'>
@@ -27,17 +40,36 @@ const Noofpeople = () => {
               </div>
               
               <div className='flex justify-center flex-wrap  mt-10'>
-                <button className='bg-gray-100 rounded-3xl px-6 my-3 py-3 mr-2 bg-yellow-200 font-medium'> <div className='flex space-x-2'><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"  onClick={handleAddAdults}>
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                        </svg><span> <span>{adults}</span> Adults</span><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M18 12H6"  onClick={handleMinusAdults} />
-                        </svg></div>
+                <button className='bg-gray-100 rounded-3xl px-6 my-3 py-3 mr-2 bg-yellow-200 font-medium'> 
+                  <div className='flex space-x-2'>
+                     <div className='flex justify-center align-center w-10 h-5' onClick={handleAddAdults}>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" >
+                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                           </svg> 
+                     </div>
+                        <span> <span>{adults}</span> Adults</span>
+                        <div  className='flex justify-center align-center w-10 h-5' onClick={handleMinusAdults}>
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M18 12H6"   />
+                           </svg>
+                        </div>
+                  </div>
                 </button>
-                <button className='bg-gray-100 rounded-3xl px-6 my-3 py-3 mr-2 bg-yellow-200 font-medium'> <div className='flex space-x-2'><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M12 6v6m0 0v6m0-6h6m-6 0H6" onClick={handleAddChildren} />
-                    </svg><span>{children}</span><span>Children</span><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" strokeWidth={4} d="M18 12H6" onClick={handleMinusChildren} />
-                    </svg></div>
+                <button className='bg-gray-100 rounded-3xl px-6 my-3 py-3 mr-2 bg-yellow-200 font-medium'>
+                    <div className='flex space-x-2'>
+                        <div className='flex justify-center align-center w-10 h-5 ' onClick={handleAddChildren} >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                     </svg>
+                      </div>
+                        <span>{children}</span>
+                        <span>Children</span>
+                    <div className='flex justify-center align-center w-10 h-5 ' onClick={handleMinusChildren}>
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                           <path stroke-linecap="round" stroke-linejoin="round" strokeWidth={4} d="M18 12H6"  />
+                         </svg>
+                    </div>
+                    </div>
                 </button>
 
               </div>
