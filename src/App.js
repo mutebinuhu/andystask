@@ -57,7 +57,6 @@ function App() {
     window.localStorage.clear();
     setTimeout(()=>{
     setConfirmOrder(false);
-
     setShowQnOne(true);
     setCounter(0)
     }, 1000)
