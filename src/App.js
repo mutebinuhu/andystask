@@ -8,6 +8,7 @@ import Map from "./Components/Qns/Map";
 import Questionfour from './Components/Qns/Questionfour';
 import Questionfive from './Components/Qns/Questionfive';
 import Noofpeople from './Components/Qns/Noofpeople';
+import Contact from './Components/Contact';
 
 
 
@@ -21,9 +22,7 @@ function App() {
   const [countPeople, setCountPeople] = useState(false);
   const [confirmOrder, setConfirmOrder] = useState(false)
   const [showNextButton, setShowNextButton] = useState(true);
-
-  
-
+  const [showContact, setShowContact] = useState(false);
 
   const [counter,  setCounter] = useState(0)
   const handleClick = () =>{
@@ -51,6 +50,7 @@ function App() {
   }else if(counter === 3){
     setCountPeople(false)
     setShowLocation(true)
+    setShowContact(true)
   }else if(counter === 4){
     setShowLocation(false)
     setConfirmOrder(true);
@@ -58,6 +58,8 @@ function App() {
     setTimeout(()=>{
     setConfirmOrder(false);
     setShowQnOne(true);
+    setShowContact(false)
+
     setCounter(0)
     }, 1000)
   }
@@ -93,6 +95,10 @@ function App() {
   if(family) dataObject.individual= "Family"
   if(children) dataObject.children= children;
   if(adults) dataObject.adults= adults;
+  let orderingFor = "";
+  if(lunch || breakfast || dinner){
+    orderingFor =  <p>Your are ordering for :  <span className='font-medium'>{dataObject.breakfast}    {dataObject.lunch},  {dataObject.dinner} </span>  </p>
+  }
 
  
 
@@ -100,17 +106,23 @@ function App() {
     <div>
       {/*<Map />
       <Location></Location>
-      */}
+      */
+   
+      }
       {
         showLocation ?
          <div className='grid place-content-center h-screen relative bg-gray-100 '>
             
              <div className='bg-white py-4 px-4'>
 
-          <h3>Please confirm your order ? </h3>
-          <p>Your are ordering as :  {dataObject.individual}  {dataObject.family}   </p>
-          <p>Your are ordering for :  {dataObject.breakfast}    {dataObject.lunch},  {dataObject.dinner}   </p>
+          <h3 className='font-bold text-center md:py-4'>Please confirm your order with tel number ? </h3>
+          <p>Your are ordering as :  <span className='font-medium'>{dataObject.individual}  {dataObject.family} </span>  </p>
+         {orderingFor}
           <p>Your are ordering for <span className='font-medium'>{dataObject.children} Children</span> and <span className='font-medium'>{dataObject.adults} adults </span></p>
+          <div className='md:px-5 md:py-5'>
+            {showContact && <Contact/>}
+          </div>
+
              </div>
           <div className="absolute bottom-5 w-full">
          {showNextButton && <Nextbutton text = 'Confirm' handleClick={handleClick}></Nextbutton>}
